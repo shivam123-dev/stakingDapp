@@ -49,12 +49,12 @@ export default function Home() {
             </div>
           </div>
           <h2 className="text-5xl font-light text-gray-800 mb-4 tracking-wide animate-slide-up" style={{ fontFamily: 'serif' }}>
-            Stake your
-            <span className="bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent font-medium animate-pulse"> HappyGurl </span>
+            Stake
+            <span className="bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent font-medium animate-pulse"> HAPG </span>
             tokens
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed animate-fade-in delay-300" style={{ fontFamily: 'serif' }}>
-            Experience the beauty of decentralized finance. Stake your HappyGurl tokens and watch your rewards grow in our crystal-clear staking platform.
+            Experience the beauty of decentralized finance. Stake your tokens and watch your rewards grow in our crystal-clear staking platform.
           </p>
         </div>
 
@@ -87,7 +87,7 @@ export default function Home() {
                 </svg>
               </div>
               <div>
-                <h3 className="text-xl font-medium text-gray-800" style={{ fontFamily: 'serif' }}>Stake HappyGurl</h3>
+                <h3 className="text-xl font-medium text-gray-800" style={{ fontFamily: 'serif' }}>Stake Token</h3>
                 <p className="text-sm text-gray-500">Begin your staking journey</p>
               </div>
             </div>
@@ -104,7 +104,7 @@ export default function Home() {
                 </svg>
               </div>
               <div>
-                <h3 className="text-xl font-medium text-gray-800" style={{ fontFamily: 'serif' }}>Withdraw HappyGurl</h3>
+                <h3 className="text-xl font-medium text-gray-800" style={{ fontFamily: 'serif' }}>Withdraw Token</h3>
                 <p className="text-sm text-gray-500">Access your staked tokens</p>
               </div>
             </div>
