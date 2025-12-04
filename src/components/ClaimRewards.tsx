@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { useWriteContract, useAccount, useWaitForTransactionReceipt, useReadContract } from 'wagmi';
 import { stakingContractAddress, stakingContractABI } from '../lib/contracts';
 import { ethers } from 'ethers';
+import { useNotification } from './NotificationProvider';
 
 export function ClaimRewards() {
   const { address } = useAccount();
-  const [notification, setNotification] = useState<{type: 'success' | 'error', message: string} | null>(null);
+  const { showSuccess, showError } = useNotification();
 
   // Check user's pending rewards
   const { data: pendingRewards } = useReadContract({
@@ -30,35 +31,21 @@ export function ClaimRewards() {
     // Check if user has rewards to claim
     const rewardsAmount = pendingRewards || BigInt(0);
     if (rewardsAmount === BigInt(0)) {
-      setNotification({
-        type: 'error',
-        message: 'No rewards available to claim.'
-      });
-      setTimeout(() => setNotification(null), 5000);
+      showError('No Rewards Available', 'You have no rewards available to claim at this time.');
       return;
     }
 
     try {
-      setNotification(null);
-
       await claim({
         address: stakingContractAddress,
         abi: stakingContractABI,
         functionName: 'claimRewards',
       });
 
-      setNotification({
-        type: 'success',
-        message: `Successfully claimed ${ethers.formatEther(rewardsAmount)} tokens!`
-      });
-      setTimeout(() => setNotification(null), 5000);
+      showSuccess('Rewards Claimed!', `Successfully claimed ${ethers.formatEther(rewardsAmount)} HAPG tokens!`);
     } catch (error: unknown) {
       console.error('Claim failed:', error);
-      setNotification({
-        type: 'error',
-        message: error instanceof Error ? error.message : 'Claim failed. Please try again.'
-      });
-      setTimeout(() => setNotification(null), 5000);
+      showError('Claim Failed', error instanceof Error ? error.message : 'Claim failed. Please try again.');
     }
   };
 
@@ -66,28 +53,6 @@ export function ClaimRewards() {
 
   return (
     <div className="space-y-4">
-      {/* Notification */}
-      {notification && (
-        <div className={`p-4 rounded-2xl border-2 ${
-          notification.type === 'success'
-            ? 'bg-green-50 border-green-200 text-green-800'
-            : 'bg-red-50 border-red-200 text-red-800'
-        }`}>
-          <div className="flex items-center">
-            <svg className={`w-5 h-5 mr-2 ${
-              notification.type === 'success' ? 'text-green-600' : 'text-red-600'
-            }`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {notification.type === 'success' ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              )}
-            </svg>
-            <p className="font-medium">{notification.message}</p>
-          </div>
-        </div>
-      )}
-
       {/* Pending Rewards Display */}
       <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-4">
         <p className="text-sm text-yellow-800">
