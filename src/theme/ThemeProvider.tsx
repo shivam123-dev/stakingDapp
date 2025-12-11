@@ -80,8 +80,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const setPreference = (p: Preference) => setPreferenceState(p);
   const toggleTheme = () => {
     // toggles between explicit light/dark (if currently system, toggle based on current effective theme)
-    const current = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
-    const next: Theme = current === 'light' ? 'dark' : 'light';
+    const next: Theme = theme === 'light' ? 'dark' : 'light';
     setPreferenceState(next);
   };
 
