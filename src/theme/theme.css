@@ -93,7 +93,13 @@ html, body, #root {
   box-shadow: var(--shadow-crystal);
 }
 
-.crystal-pattern { background-image: radial-gradient(circle at 10% 10%, rgba(255,255,255,0.02), transparent 20%); }
+.crystal-pattern {
+  background-image: radial-gradient(
+    circle at 10% 10%,
+    rgba(255, 255, 255, 0.02),
+    transparent 20%
+  );
+}
 
 .theme-toggle-btn {
   display: inline-flex;
