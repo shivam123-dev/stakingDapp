@@ -70,7 +70,7 @@ const HomeContent = () => {
                     <circle cx="12" cy="12" r="3" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} />
                   </svg>
                 )}
-                <span className="text-sm font-medium" style={{ fontFamily: 'serif' }}>{theme === 'light' ? 'Dark' : 'Light'}</span>
+                <span className="text-sm font-medium">{theme === 'light' ? 'Dark' : 'Light'}</span>
               </button>
 
               <label htmlFor="theme-pref" className="sr-only">Theme preference</label>
